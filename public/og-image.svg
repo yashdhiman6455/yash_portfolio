@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#0b0b10" />
+      <stop offset="1" stop-color="#12121a" />
+    </linearGradient>
+    <linearGradient id="accent" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#6366f1" />
+      <stop offset="1" stop-color="#8b5cf6" />
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="630" fill="url(#bg)" />
+  <circle cx="180" cy="120" r="260" fill="#8b5cf6" opacity="0.12" />
+  <circle cx="1040" cy="540" r="300" fill="#6366f1" opacity="0.10" />
+  <rect x="88" y="88" width="1024" height="454" rx="24" fill="none" stroke="#ffffff" stroke-opacity="0.12" />
+  <rect x="88" y="88" width="200" height="454" rx="24" fill="url(#accent)" opacity="0.08" />
+  <text x="148" y="200" font-family="Arial, sans-serif" font-size="34" font-weight="700" fill="#a5b4fc">YD</text>
+  <text x="350" y="230" font-family="Arial, sans-serif" font-size="56" font-weight="700" fill="#fafafa">Yash Dhiman</text>
+  <text x="352" y="290" font-family="Arial, sans-serif" font-size="30" fill="#a1a1aa">PHP Laravel Developer | Full-Stack Developer</text>
+  <text x="352" y="360" font-family="Arial, sans-serif" font-size="22" fill="#71717a">3+ years building Laravel applications, REST APIs and</text>
+  <text x="352" y="394" font-family="Arial, sans-serif" font-size="22" fill="#71717a">modern full-stack solutions — now expanding into MERN.</text>
+  <rect x="352" y="440" width="240" height="10" rx="5" fill="url(#accent)" />
+</svg>
