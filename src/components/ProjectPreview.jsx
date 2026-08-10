@@ -233,10 +233,35 @@ function ScreenshotCollage({ images }) {
   )
 }
 
+function AutomationPreview() {
+  return (
+    <div className="overflow-hidden rounded-xl border border-line bg-[#0b0c10]">
+      <div className="flex items-center gap-1.5 border-b border-white/10 px-3 py-2.5">
+        <span className="h-2.5 w-2.5 rounded-full bg-red-400/60" aria-hidden="true" />
+        <span className="h-2.5 w-2.5 rounded-full bg-yellow-400/60" aria-hidden="true" />
+        <span className="h-2.5 w-2.5 rounded-full bg-green-400/60" aria-hidden="true" />
+        <div className="ml-2 flex-1 truncate rounded-md bg-white/5 px-3 py-1 font-mono text-[10px] text-zinc-500">
+          selenium — invoice collector
+        </div>
+      </div>
+      <div className="space-y-1.5 p-4 font-mono text-[10px] leading-relaxed">
+        <p className="text-zinc-500">$ php collect-invoices.php</p>
+        <p className="text-zinc-500">▸ Launching Chrome via Selenium WebDriver…</p>
+        <p className="text-emerald-400/80">✓ Authenticated — vendor portal</p>
+        <p className="text-emerald-400/80">✓ Located pending invoices</p>
+        <p className="text-emerald-400/80">✓ Downloaded invoice.pdf</p>
+        <p className="text-sky-300/80">→ Saved to /invoices/GetMyInvoices</p>
+        <p className="text-zinc-500">✓ Batch complete — no errors</p>
+      </div>
+    </div>
+  )
+}
+
 export default function ProjectPreview({ variant, screenshots }) {
   if (screenshots && screenshots.length > 0) return <ScreenshotCollage images={screenshots} />
   if (variant === 'form-builder') return <FormBuilderPreview />
   if (variant === 'storefront') return <StorefrontPreview />
   if (variant === 'api') return <ApiPreview />
+  if (variant === 'automation') return <AutomationPreview />
   return null
 }

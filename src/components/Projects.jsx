@@ -12,8 +12,8 @@ export default function Projects({ onOpenCaseStudy, onShowCredentials }) {
         <SectionHeading
           index={4}
           eyebrow="Work"
-          title="Featured Projects"
-          description="A selection of production-style work — from a full e-commerce storefront to an AI-powered form builder."
+          title="Latest Projects"
+          description="A selection of production-style work — from a full e-commerce storefront to an AI-powered form builder and browser-based automation."
         />
 
         <div className="space-y-8">

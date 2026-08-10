@@ -79,8 +79,8 @@ export const experience = [
   {
     role: 'PHP Web Developer',
     company: 'Glocify Technologies',
-    period: 'Jan 2025 – Present',
-    current: true,
+    period: 'Jan 2025 – July 2026',
+    current: false,
     description:
       'Designing and maintaining Laravel-based web applications with a focus on reliability, integrations and performance in production.',
     technologies: ['PHP', 'Laravel', 'MySQL', 'JavaScript', 'Vue.js', 'REST APIs'],
@@ -211,7 +211,7 @@ export const projects = [
     id: 'shopsphere',
     name: 'ShopSphere',
     tagline: 'Full-stack e-commerce storefront built with Laravel, Vue.js and MySQL.',
-    status: 'Featured Project',
+    status: 'Latest Project',
     year: '2025',
     featured: true,
     preview: 'storefront',
@@ -269,7 +269,7 @@ export const projects = [
     id: 'formgenius-ai',
     name: 'FormGenius AI',
     tagline: 'AI-powered dynamic form builder built with Laravel and Livewire.',
-    status: 'Featured Project',
+    status: 'Latest Project',
     year: '2026',
     featured: true,
     preview: 'form-builder',
@@ -332,6 +332,52 @@ export const projects = [
     ],
     links: {
       demo: 'YOUR_LIVE_DEMO_URL',
+      github: 'YOUR_GITHUB_URL',
+    },
+  },
+  {
+    id: 'getmyinvoices',
+    name: 'GetMyInvoices',
+    tagline: 'Browser automation that collects and manages invoices from multiple portals in one place.',
+    status: 'Latest Project',
+    year: '2025',
+    featured: true,
+    preview: 'automation',
+    screenshots: [],
+    description:
+      'Selenium-based browser automation built with core PHP for an invoice collection platform — automating login, form filling, navigation and invoice document downloads across supported portals, replacing repetitive manual collection with reliable automated workflows.',
+    problem:
+      'Collecting invoices meant logging into each portal, navigating inconsistent page layouts and downloading documents one by one — repetitive, error-prone work that did not scale.',
+    solution:
+      'Automation scripts written in core PHP on top of Selenium WebDriver that authenticate into supported invoice portals, navigate dynamic pages, and locate and download invoice documents into a centralized collection.',
+    features: [
+      'Automated login and authentication for supported invoice portals',
+      'Form filling, navigation and button interactions on dynamic pages',
+      'Automated invoice discovery and document location flows',
+      'Automatic downloading of invoice documents',
+      'Handling of redirects, page-load timing and changing page structures',
+      'Reusable automation workflows that reduce manual invoice collection',
+    ],
+    highlights: [
+      'Selenium WebDriver-driven browser automation',
+      'Robust element handling for dynamic web pages',
+      'Reliable handling of redirects, timing and session state',
+      'Maintainable and reusable automation scripts',
+    ],
+    flow: [],
+    challenges: [
+      'Debugging flaky element locators on pages with changing structures.',
+      'Handling redirects, page-load timing and session state across different portals.',
+      'Keeping workflows reliable as portal layouts evolved.',
+    ],
+    learned: [
+      'Hardening browser automation against dynamic-element and timing issues.',
+      'Building reusable, maintainable automation workflows for repeated tasks.',
+    ],
+    tech: ['Selenium', 'Web Automation', 'Core PHP', 'Browser Automation'],
+    demoCredentials: [],
+    links: {
+      demo: '',
       github: 'YOUR_GITHUB_URL',
     },
   },
