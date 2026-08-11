@@ -216,13 +216,6 @@ export const architecture = {
       icon: 'cloud',
     },
   ],
-  principles: [
-    'Clean architecture',
-    'Reusable components',
-    'Input validation',
-    'Secure authentication',
-    'Maintainability',
-  ],
 }
 
 export const resume = {
