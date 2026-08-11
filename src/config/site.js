@@ -262,7 +262,7 @@ export const projects = [
     ],
     links: {
       demo: 'https://shopsphere-frontend-one.vercel.app/',
-      github: 'YOUR_GITHUB_URL',
+      github: 'https://github.com/yashdhiman6455/shopsphere-backend',
     },
   },
   {
@@ -331,8 +331,8 @@ export const projects = [
       { role: 'Demo', email: 'demo@gmail.com', password: 'demo1234' },
     ],
     links: {
-      demo: 'YOUR_LIVE_DEMO_URL',
-      github: 'YOUR_GITHUB_URL',
+      demo: 'https://formgenius-ai.onrender.com/',
+      github: 'https://github.com/yashdhiman6455/formgenius-ai.git',
     },
   },
   {
