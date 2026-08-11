@@ -1,6 +1,8 @@
 import {
   Atom,
+  Bot,
   Braces,
+  Brain,
   Cable,
   Code2,
   Container,
@@ -8,17 +10,23 @@ import {
   FileCode2,
   GitBranch,
   GitFork,
+  Heart,
   Hexagon,
   KeyRound,
   Layers,
   Layout,
+  MousePointer2,
   Package,
   Palette,
   Route,
+  ScanSearch,
   Send,
   Server,
   ServerCog,
   Sparkles,
+  SquarePen,
+  Terminal,
+  Wand,
   Webhook,
   Workflow,
   Wrench,
@@ -35,6 +43,7 @@ const categoryIcons = {
   route: Route,
   wrench: Wrench,
   sparkles: Sparkles,
+  bot: Bot,
 }
 
 const techIcons = {
@@ -59,6 +68,16 @@ const techIcons = {
   Docker: Container,
   Vite: Zap,
   Composer: Package,
+  Cursor: MousePointer2,
+  opencode: Terminal,
+  Claude: Brain,
+  ChatGPT: Bot,
+  'GitHub Copilot': Wand,
+  Gemini: Sparkles,
+  Perplexity: ScanSearch,
+  v0: SquarePen,
+  Lovable: Heart,
+  Bolt: Zap,
 }
 
 export default function Skills() {
@@ -82,7 +101,11 @@ export default function Skills() {
           {skillCategories.map((category, i) => {
             const CategoryIcon = categoryIcons[category.icon]
             return (
-              <Reveal key={category.id} delay={i * 0.08} className="h-full">
+              <Reveal
+                key={category.id}
+                delay={i * 0.08}
+                className={category.wide ? 'md:col-span-2 xl:col-span-3' : 'h-full'}
+              >
                 <article
                   className={`card-tinted card-hover flex h-full flex-col rounded-2xl p-6 transition-all duration-300 ${
                     category.inProgress ? 'border-dashed!' : ''

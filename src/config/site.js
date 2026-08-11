@@ -169,6 +169,14 @@ export const skillCategories = [
     skills: ['Node.js', 'Express.js', 'MongoDB', 'Mongoose'],
     inProgress: true,
   },
+  {
+    id: 'ai-tools',
+    title: 'AI Tools',
+    icon: 'bot',
+    description: 'AI-assisted development workflow — code editing, pair programming, research and rapid prototyping.',
+    skills: ['Cursor', 'opencode', 'Claude', 'ChatGPT', 'GitHub Copilot', 'Gemini', 'Perplexity', 'v0', 'Lovable', 'Bolt'],
+    wide: true,
+  },
 ]
 
 export const architecture = {
