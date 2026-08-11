@@ -19,6 +19,9 @@
   --c-accent: 167 139 250;
   --c-accent-2: 129 140 248;
   --c-accent-strong: 139 92 246;
+  --c-accent-sky: 125 211 252;
+  --c-accent-cyan: 103 232 249;
+  --c-accent-emerald: 110 231 183;
   --c-status: 74 222 128;
   --c-warn: 251 191 36;
 }
@@ -35,6 +38,9 @@ html.light {
   --c-accent: 109 40 217;
   --c-accent-2: 124 58 237;
   --c-accent-strong: 91 33 182;
+  --c-accent-sky: 3 105 161;
+  --c-accent-cyan: 8 145 178;
+  --c-accent-emerald: 5 150 105;
   --c-status: 21 128 61;
   --c-warn: 180 83 9;
 }
@@ -57,6 +63,9 @@ html.light {
   --color-accent: rgb(var(--c-accent));
   --color-accent-2: rgb(var(--c-accent-2));
   --color-accent-strong: rgb(var(--c-accent-strong));
+  --color-accent-sky: rgb(var(--c-accent-sky));
+  --color-accent-cyan: rgb(var(--c-accent-cyan));
+  --color-accent-emerald: rgb(var(--c-accent-emerald));
   --color-status: rgb(var(--c-status));
   --color-warn: rgb(var(--c-warn));
 }
@@ -147,6 +156,34 @@ body {
 .card-surface {
   background-color: rgb(var(--c-surface) / 0.6);
   border: 1px solid rgb(var(--c-border) / 0.08);
+}
+
+/* Section-tinted card. Set --tint / --tint-2 to a soft rgba accent per section. */
+.card-tinted {
+  position: relative;
+  background-color: rgb(var(--c-surface) / 0.6);
+  border: 1px solid rgb(var(--c-border) / 0.08);
+  background-image:
+    radial-gradient(120% 90% at 15% 0%, var(--tint, rgba(167, 139, 250, 0.09)) 0%, transparent 55%),
+    radial-gradient(120% 90% at 85% 100%, var(--tint-2, transparent) 0%, transparent 55%);
+}
+
+/* Premium gradient-border card. Set --edge-a / --edge-b / --edge-glow per section. */
+.card-edge {
+  position: relative;
+  border: 1px solid transparent;
+  background:
+    linear-gradient(rgb(var(--c-surface) / 0.78), rgb(var(--c-surface) / 0.5)) padding-box,
+    linear-gradient(140deg, var(--edge-a, rgba(139, 92, 246, 0.55)), var(--edge-b, rgba(99, 102, 241, 0.55))) border-box;
+  box-shadow: 0 0 60px -20px var(--edge-glow, rgba(139, 92, 246, 0.25));
+}
+
+.card-hover {
+  transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease, background-color 0.3s ease;
+}
+.card-hover:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 22px 50px -22px var(--hover-glow, rgba(139, 92, 246, 0.3));
 }
 
 .text-gradient {

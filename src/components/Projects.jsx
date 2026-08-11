@@ -14,6 +14,7 @@ export default function Projects({ onOpenCaseStudy, onShowCredentials }) {
           eyebrow="Work"
           title="Latest Projects"
           description="A selection of production-style work — from a full e-commerce storefront to an AI-powered form builder and browser-based automation."
+          accent="indigo"
         />
 
         <div className="space-y-8">

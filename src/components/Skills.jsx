@@ -31,8 +31,10 @@ import SectionHeading from './shared/SectionHeading'
 const categoryIcons = {
   server: Server,
   layout: Layout,
-  sparkles: Sparkles,
+  database: Database,
+  route: Route,
   wrench: Wrench,
+  sparkles: Sparkles,
 }
 
 const techIcons = {
@@ -61,32 +63,43 @@ const techIcons = {
 
 export default function Skills() {
   return (
-    <section id="skills" className="py-24 md:py-32">
-      <div className="container-site">
+    <section id="skills" className="relative py-24 md:py-32">
+      <div
+        className="pointer-events-none absolute -left-40 top-40 h-96 w-96 rounded-full bg-accent-cyan/10 blur-[140px]"
+        aria-hidden="true"
+      />
+
+      <div className="container-site relative">
         <SectionHeading
           index={3}
           eyebrow="Skills"
           title="Skills & Tools"
           description="Categorized by where I use them day to day — backend depth first, with the frontend and tooling that complete the stack."
+          accent="cyan"
         />
 
-        <div className="grid gap-5 md:grid-cols-2 xl:grid-cols-4">
+        <div className="grid gap-5 md:grid-cols-2 xl:grid-cols-3">
           {skillCategories.map((category, i) => {
             const CategoryIcon = categoryIcons[category.icon]
             return (
-              <Reveal key={category.id} delay={i * 0.08}>
+              <Reveal key={category.id} delay={i * 0.08} className="h-full">
                 <article
-                  className={`card-surface flex h-full flex-col rounded-2xl p-6 transition-colors hover:border-accent/25 ${
-                    category.inProgress ? 'border-dashed' : ''
+                  className={`card-tinted card-hover flex h-full flex-col rounded-2xl p-6 transition-all duration-300 ${
+                    category.inProgress ? 'border-dashed!' : ''
                   }`}
+                  style={{
+                    '--tint': 'rgba(103, 232, 249, 0.09)',
+                    '--tint-2': 'rgba(129, 140, 248, 0.07)',
+                    '--hover-glow': 'rgba(103, 232, 249, 0.18)',
+                  }}
                 >
                   <div className="flex items-center justify-between">
-                    <div className="grid h-10 w-10 place-items-center rounded-lg border border-accent/25 bg-accent/10">
-                      <CategoryIcon size={18} className="text-accent" />
+                    <div className="grid h-10 w-10 place-items-center rounded-lg border border-accent-cyan/25 bg-accent-cyan/10">
+                      <CategoryIcon size={18} className="text-accent-cyan" />
                     </div>
                     {category.inProgress && (
-                      <span className="inline-flex items-center gap-1.5 rounded-full border border-status/30 bg-status/10 px-2.5 py-1 text-[11px] font-medium text-status">
-                        <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-status" aria-hidden="true" />
+                      <span className="inline-flex items-center gap-1.5 rounded-full border border-accent-cyan/30 bg-accent-cyan/10 px-2.5 py-1 text-[11px] font-medium text-accent-cyan">
+                        <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-accent-cyan" aria-hidden="true" />
                         In progress
                       </span>
                     )}
@@ -105,9 +118,14 @@ export default function Skills() {
                       return (
                         <li
                           key={skill}
-                          className="group inline-flex items-center gap-2 rounded-lg border border-line bg-surface-2/50 px-2.5 py-1.5 text-[13px] text-muted transition-colors hover:border-accent/40 hover:text-text"
+                          className="group inline-flex items-center gap-2 rounded-lg border border-line bg-background/40 px-2.5 py-1.5 text-[13px] text-muted transition-all duration-300 hover:border-accent-cyan/40 hover:text-text"
                         >
-                          {Icon && <Icon size={14} className="text-faint transition-colors group-hover:text-accent" />}
+                          {Icon && (
+                            <Icon
+                              size={14}
+                              className="text-faint transition-colors group-hover:text-accent-cyan"
+                            />
+                          )}
                           {skill}
                         </li>
                       )

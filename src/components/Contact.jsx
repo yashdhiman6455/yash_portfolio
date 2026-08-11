@@ -5,8 +5,10 @@ import {
   CheckCircle2,
   Loader2,
   Mail,
+  MapPin,
+  Phone,
 } from 'lucide-react'
-import { contact } from '../config/site'
+import { contact, site } from '../config/site'
 import { submitContactMessage, mailtoHref } from '../lib/contact'
 import { cn } from '../lib/cn'
 import Reveal from './shared/Reveal'
@@ -44,7 +46,7 @@ function Field({ label, error, children, fieldId }) {
 const inputClass = (hasError) =>
   cn(
     'w-full rounded-lg border bg-surface-2/50 px-4 py-2.5 text-sm text-text placeholder:text-faint transition-colors',
-    'focus:border-accent focus:outline-none focus:ring-2 focus:ring-accent/25',
+    'focus:border-accent-emerald focus:outline-none focus:ring-2 focus:ring-accent-emerald/25',
     hasError ? 'border-red-500/60' : 'border-line',
   )
 
@@ -80,7 +82,15 @@ function ContactForm() {
   }
 
   return (
-    <form onSubmit={handleSubmit} noValidate className="card-surface space-y-5 rounded-2xl p-6 md:p-8">
+    <form
+      onSubmit={handleSubmit}
+      noValidate
+      className="card-tinted space-y-5 rounded-3xl p-6 md:p-8"
+      style={{
+        '--tint': 'rgba(110, 231, 183, 0.08)',
+        '--tint-2': 'rgba(34, 211, 238, 0.07)',
+      }}
+    >
       <div className="grid gap-5 sm:grid-cols-2">
         <Field label="Name" error={errors.name} fieldId="cf-name">
           <input
@@ -146,7 +156,7 @@ function ContactForm() {
       <button
         type="submit"
         disabled={status === 'submitting'}
-        className="group inline-flex w-full items-center justify-center gap-2 rounded-lg bg-gradient-to-r from-indigo-600 to-violet-600 px-6 py-3 text-sm font-medium text-white shadow-lg shadow-violet-600/20 transition-all hover:shadow-violet-600/35 hover:brightness-110 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent active:scale-[0.99] disabled:pointer-events-none disabled:opacity-60 sm:w-auto"
+        className="group inline-flex w-full items-center justify-center gap-2 rounded-lg bg-gradient-to-r from-emerald-500 to-cyan-500 px-6 py-3 text-sm font-medium text-white shadow-lg shadow-emerald-600/20 transition-all hover:shadow-emerald-600/35 hover:brightness-110 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent-emerald active:scale-[0.99] disabled:pointer-events-none disabled:opacity-60 sm:w-auto"
       >
         {status === 'submitting' ? (
           <>
@@ -166,59 +176,128 @@ function ContactForm() {
 
 export default function Contact() {
   return (
-    <section id="contact" className="py-24 md:py-32">
-      <div className="container-site">
+    <section id="contact" className="relative py-24 md:py-32">
+      <div
+        className="pointer-events-none absolute -left-40 bottom-40 h-96 w-96 rounded-full bg-accent-emerald/10 blur-[140px]"
+        aria-hidden="true"
+      />
+      <div
+        className="pointer-events-none absolute -right-40 top-24 h-96 w-96 rounded-full bg-accent-cyan/10 blur-[140px]"
+        aria-hidden="true"
+      />
+
+      <div className="container-site relative">
         <SectionHeading
           index={6}
           eyebrow={contact.eyebrow}
           title={contact.title}
           description={contact.text}
+          accent="emerald"
         />
 
-        <div className="grid gap-10 lg:grid-cols-[0.85fr_1.15fr] lg:gap-14">
+        <div className="grid gap-6 lg:grid-cols-[0.85fr_1.15fr] lg:gap-8">
           <Reveal>
-            <div className="space-y-3">
-              {contact.channels.map((channel) => {
-                const Icon = channelIcons[channel.icon]
-                const isEmail = channel.icon === 'mail'
-                const href = isEmail ? mailtoHref : channel.href
-                const target = isEmail ? undefined : '_blank'
-                return (
-                  <a
-                    key={channel.label}
-                    href={href}
-                    target={target}
-                    rel={isEmail ? undefined : 'noopener noreferrer'}
-                    className="card-surface group flex items-center gap-4 rounded-xl p-4 transition-colors hover:border-accent/40"
-                  >
-                    <span className="grid h-10 w-10 shrink-0 place-items-center rounded-lg border border-accent/25 bg-accent/10">
-                      {Icon('text-accent')}
-                    </span>
-                    <span className="min-w-0 flex-1">
-                      <span className="block text-sm font-medium text-text">{channel.label}</span>
-                      <span className="block truncate font-mono text-xs text-faint">
-                        {channel.value}
-                      </span>
-                    </span>
-                    <ArrowUpRight
-                      size={16}
-                      className="shrink-0 text-faint transition-all group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:text-accent"
-                    />
-                  </a>
-                )
-              })}
+            <aside
+              className="card-edge flex h-full flex-col rounded-3xl p-6 md:p-8"
+              style={{
+                '--edge-a': 'rgba(52, 211, 153, 0.5)',
+                '--edge-b': 'rgba(34, 211, 238, 0.4)',
+                '--edge-glow': 'rgba(52, 211, 153, 0.22)',
+              }}
+            >
+              <p className="font-mono text-xs uppercase tracking-[0.2em] text-accent-emerald">
+                Get in touch
+              </p>
+              <h3 className="mt-3 font-display text-2xl font-semibold tracking-tight text-text md:text-3xl">
+                Let&apos;s build something great together.
+              </h3>
+              <p className="mt-3 text-sm leading-relaxed text-muted">
+                Open to freelance work, full-time roles and interesting collaborations — I typically
+                respond within a couple of days.
+              </p>
 
-              <div className="rounded-xl border border-line bg-surface-2/40 p-4 text-[13px] leading-relaxed text-muted">
-                Prefer email? Reach me at{' '}
+              <div className="mt-8 space-y-3">
+                {contact.channels.map((channel) => {
+                  const Icon = channelIcons[channel.icon]
+                  const isEmail = channel.icon === 'mail'
+                  const href = isEmail ? mailtoHref : channel.href
+                  const target = isEmail ? undefined : '_blank'
+                  return (
+                    <a
+                      key={channel.label}
+                      href={href}
+                      target={target}
+                      rel={isEmail ? undefined : 'noopener noreferrer'}
+                      className={`group flex items-center gap-4 rounded-xl border p-4 transition-all duration-300 ${
+                        isEmail
+                          ? 'border-accent-emerald/40 bg-accent-emerald/10 hover:bg-accent-emerald/15'
+                          : 'border-line bg-background/40 hover:border-accent-emerald/40 hover:bg-background/60'
+                      }`}
+                    >
+                      <span
+                        className={`grid h-10 w-10 shrink-0 place-items-center rounded-lg border ${
+                          isEmail
+                            ? 'border-accent-emerald/50 bg-accent-emerald/15'
+                            : 'border-accent-emerald/25 bg-accent-emerald/10'
+                        }`}
+                      >
+                        {Icon('text-accent-emerald')}
+                      </span>
+                      <span className="min-w-0 flex-1">
+                        <span className="block text-sm font-medium text-text">{channel.label}</span>
+                        <span className="block truncate font-mono text-xs text-faint">
+                          {channel.value}
+                        </span>
+                      </span>
+                      <ArrowUpRight
+                        size={16}
+                        className="shrink-0 text-faint transition-all group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:text-accent-emerald"
+                      />
+                    </a>
+                  )
+                })}
+
                 <a
-                  href={mailtoHref}
-                  className="font-medium text-accent underline-offset-4 hover:underline"
+                  href="tel:+918569885563"
+                  className="group flex items-center gap-4 rounded-xl border border-line bg-background/40 p-4 transition-all duration-300 hover:border-accent-emerald/40 hover:bg-background/60"
                 >
-                  {contact.channels[0].value}
+                  <span className="grid h-10 w-10 shrink-0 place-items-center rounded-lg border border-accent-emerald/25 bg-accent-emerald/10">
+                    <Phone size={16} className="text-accent-emerald" />
+                  </span>
+                  <span className="min-w-0 flex-1">
+                    <span className="block text-sm font-medium text-text">Phone</span>
+                    <span className="block truncate font-mono text-xs text-faint">{site.phone}</span>
+                  </span>
+                  <ArrowUpRight
+                    size={16}
+                    className="shrink-0 text-faint transition-all group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:text-accent-emerald"
+                  />
                 </a>
-                {' '}— I typically respond within a couple of days.
+
+                <div className="flex items-center gap-4 rounded-xl border border-line bg-background/40 p-4">
+                  <span className="grid h-10 w-10 shrink-0 place-items-center rounded-lg border border-accent-emerald/25 bg-accent-emerald/10">
+                    <MapPin size={16} className="text-accent-emerald" />
+                  </span>
+                  <span className="min-w-0 flex-1">
+                    <span className="block text-sm font-medium text-text">Location</span>
+                    <span className="block font-mono text-xs text-faint">{site.location}</span>
+                  </span>
+                </div>
               </div>
-            </div>
+
+              <div className="mt-auto pt-8">
+                <div className="rounded-2xl border border-line bg-background/40 p-4 text-[13px] leading-relaxed text-muted">
+                  Prefer email? Reach me at{' '}
+                  <a
+                    href={mailtoHref}
+                    className="font-semibold text-accent-emerald underline-offset-4 hover:underline"
+                  >
+                    {contact.channels[0].value}
+                  </a>{' '}
+                  — I typically respond within a couple of days.
+                </div>
+              </div>
+            </aside>
           </Reveal>
 
           <Reveal delay={0.1}>
