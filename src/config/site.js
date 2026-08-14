@@ -15,7 +15,7 @@ export const site = {
   email: 'dyash6455@gmail.com',
   phone: '+91 85698 85563',
   whatsappUrl: 'https://wa.me/918569885563',
-  resumeUrl: '/resume/Yash-Resume.pdf',
+  resumeUrl: '/resume/Resume_Yash.pdf',
   resumeDownloadName: 'Yash-Dhiman-Resume.pdf',
   githubUrl: 'https://github.com/yashdhiman6455',
   linkedinUrl: 'https://www.linkedin.com/in/yash-dhiman003/',
