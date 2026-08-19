@@ -13,7 +13,7 @@ export default function Projects({ onOpenCaseStudy, onShowCredentials }) {
           index={4}
           eyebrow="Work"
           title="Latest Projects"
-          description="A selection of production-style work — from a full e-commerce storefront to an AI-powered form builder and browser-based automation."
+          description="A selection of production-style work — from a full e-commerce storefront to an AI-powered form builder, a property rental platform and browser-based automation."
           accent="indigo"
         />
 
