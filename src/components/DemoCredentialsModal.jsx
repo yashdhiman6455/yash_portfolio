@@ -39,10 +39,10 @@ function CopyButton({ label, copied, onClick }) {
       onClick={onClick}
       aria-label={`Copy ${label.toLowerCase()}`}
       className={cn(
-        'inline-flex shrink-0 items-center gap-1.5 rounded-md border px-2.5 py-1.5 text-xs font-medium transition-colors',
+        'inline-flex shrink-0 items-center gap-1.5 rounded-lg border px-2.5 py-1.5 text-xs font-medium transition-all duration-300',
         copied
           ? 'border-status/40 bg-status/10 text-status'
-          : 'border-line-strong text-muted hover:border-accent/50 hover:text-accent',
+          : 'border-line-strong/50 text-muted hover:border-accent/50 hover:text-accent hover:bg-accent/5',
       )}
     >
       {copied ? (
@@ -65,7 +65,7 @@ function EmailField({ value }) {
   return (
     <div>
       <div className="mb-1.5 font-mono text-[11px] uppercase tracking-[0.16em] text-faint">Email</div>
-      <div className="flex items-center gap-2 rounded-lg border border-line bg-surface-2/50 px-3 py-2">
+      <div className="flex items-center gap-2 rounded-xl border border-line bg-surface-2/40 px-3 py-2.5 backdrop-blur-sm">
         <span className="min-w-0 flex-1 truncate font-mono text-sm text-text">{value}</span>
         <CopyButton label="email" copied={copied} onClick={() => copy(value)} />
       </div>
@@ -79,7 +79,7 @@ function PasswordField({ value }) {
   return (
     <div>
       <div className="mb-1.5 font-mono text-[11px] uppercase tracking-[0.16em] text-faint">Password</div>
-      <div className="flex items-center gap-2 rounded-lg border border-line bg-surface-2/50 px-3 py-2">
+      <div className="flex items-center gap-2 rounded-xl border border-line bg-surface-2/40 px-3 py-2.5 backdrop-blur-sm">
         <span className="min-w-0 flex-1 truncate font-mono text-sm tracking-wider text-text">
           {show ? value : '••••••••••••'}
         </span>
@@ -87,7 +87,7 @@ function PasswordField({ value }) {
           type="button"
           onClick={() => setShow((v) => !v)}
           aria-label={show ? 'Hide password' : 'Show password'}
-          className="grid h-8 w-8 shrink-0 place-items-center rounded-md text-muted transition-colors hover:border-accent/50 hover:text-accent"
+          className="grid h-8 w-8 shrink-0 place-items-center rounded-lg text-muted transition-all duration-300 hover:border-accent/50 hover:text-accent hover:bg-accent/5"
         >
           {show ? <EyeOff size={15} /> : <Eye size={15} />}
         </button>
@@ -129,11 +129,11 @@ export default function DemoCredentialsModal({ project, onClose }) {
       {project && credentials.length > 0 && (
         <div className="fixed inset-0 z-[100]">
           <motion.div
-            className="absolute inset-0 bg-black/70 backdrop-blur-sm"
+            className="absolute inset-0 bg-black/75 backdrop-blur-md"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            transition={{ duration: 0.25 }}
+            transition={{ duration: 0.3 }}
             onClick={onClose}
             aria-hidden="true"
           />
@@ -143,15 +143,15 @@ export default function DemoCredentialsModal({ project, onClose }) {
               role="dialog"
               aria-modal="true"
               aria-labelledby="demo-credentials-title"
-              className="pointer-events-auto w-full max-w-md overflow-hidden rounded-2xl border border-line bg-background shadow-2xl shadow-black/40"
+              className="pointer-events-auto w-full max-w-md overflow-hidden rounded-2xl border border-line-strong/30 bg-background/95 shadow-2xl shadow-black/50 backdrop-blur-xl"
               initial={{ opacity: 0, y: reduce ? 0 : 24, scale: reduce ? 1 : 0.97 }}
               animate={{ opacity: 1, y: 0, scale: 1 }}
               exit={{ opacity: 0, y: reduce ? 0 : 16, scale: reduce ? 1 : 0.97 }}
-              transition={{ duration: 0.3, ease: EASE }}
+              transition={{ duration: 0.35, ease: EASE }}
             >
-              <header className="flex items-start justify-between gap-4 border-b border-line px-6 py-5">
+              <header className="flex items-start justify-between gap-4 border-b border-line-strong/30 px-6 py-5">
                 <div>
-                  <span className="inline-flex items-center gap-1.5 rounded-full border border-accent/30 bg-accent/10 px-2.5 py-0.5 text-[11px] font-medium text-accent">
+                  <span className="inline-flex items-center gap-1.5 rounded-full border border-accent/30 bg-accent/10 px-3 py-0.5 text-[11px] font-medium text-accent">
                     <Lock size={11} />
                     Demo Credentials
                   </span>
@@ -168,7 +168,7 @@ export default function DemoCredentialsModal({ project, onClose }) {
                   type="button"
                   onClick={onClose}
                   aria-label="Close demo credentials"
-                  className="grid h-9 w-9 shrink-0 place-items-center rounded-lg border border-line-strong text-muted transition-colors hover:border-accent/50 hover:text-text"
+                  className="grid h-9 w-9 shrink-0 place-items-center rounded-xl border border-line-strong/50 text-muted transition-all duration-300 hover:border-accent/50 hover:text-text hover:bg-surface/50"
                 >
                   <X size={17} />
                 </button>
@@ -184,10 +184,10 @@ export default function DemoCredentialsModal({ project, onClose }) {
                         onClick={() => setActiveRole(i)}
                         aria-pressed={i === activeRole}
                         className={cn(
-                          'rounded-md border px-2.5 py-1 font-mono text-[11px] transition-colors',
+                          'rounded-lg border px-3 py-1.5 font-mono text-[11px] transition-all duration-300',
                           i === activeRole
-                            ? 'border-accent/50 bg-accent/10 text-accent'
-                            : 'border-line-strong text-muted hover:text-text',
+                            ? 'border-accent/50 bg-accent/10 text-accent shadow-sm shadow-accent/10'
+                            : 'border-line-strong/50 text-muted hover:text-text hover:bg-surface/30',
                         )}
                       >
                         {cred.role}
@@ -204,7 +204,7 @@ export default function DemoCredentialsModal({ project, onClose }) {
                 )}
               </div>
 
-              <footer className="flex items-center gap-3 border-t border-line px-6 py-5">
+              <footer className="flex items-center gap-3 border-t border-line-strong/30 px-6 py-5">
                 <Button href={project.links.demo} size="md" className="flex-1">
                   <ExternalLink size={15} />
                   Open Live Demo

@@ -1,4 +1,5 @@
-import Reveal from './Reveal'
+import { motion, useReducedMotion } from 'framer-motion'
+import { EASE } from '../../lib/motion'
 
 const accents = {
   accent: { index: 'text-accent', line: 'bg-accent/50' },
@@ -10,23 +11,31 @@ const accents = {
 
 export default function SectionHeading({ index, eyebrow, title, description, accent = 'accent' }) {
   const a = accents[accent] || accents.accent
+  const reduce = useReducedMotion()
+
   return (
-    <Reveal className="mb-12 md:mb-16">
+    <motion.div
+      className="mb-14 md:mb-18"
+      initial={{ opacity: 0, y: 24, filter: reduce ? 'none' : 'blur(4px)' }}
+      whileInView={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
+      viewport={{ once: true, margin: '-60px' }}
+      transition={{ duration: 0.8, ease: EASE }}
+    >
       <div className="flex items-center gap-3">
-        <span className={`font-mono text-xs ${a.index}`}>
+        <span className={`font-mono text-xs font-medium ${a.index}`}>
           {String(index).padStart(2, '0')}
         </span>
-        <span className={`h-px w-8 ${a.line}`} aria-hidden="true" />
-        <span className="font-mono text-xs uppercase tracking-[0.2em] text-muted">
+        <span className={`h-px w-12 ${a.line}`} aria-hidden="true" />
+        <span className="font-mono text-xs uppercase tracking-[0.22em] text-muted">
           {eyebrow}
         </span>
       </div>
-      <h2 className="mt-4 font-display text-3xl font-semibold tracking-tight text-text sm:text-4xl">
+      <h2 className="mt-5 font-display text-3xl font-semibold tracking-tight text-text sm:text-4xl lg:text-[2.75rem]">
         {title}
       </h2>
       {description && (
         <p className="mt-4 max-w-2xl text-base leading-relaxed text-muted">{description}</p>
       )}
-    </Reveal>
+    </motion.div>
   )
 }

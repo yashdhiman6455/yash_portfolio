@@ -2,20 +2,17 @@
 
 /* ---------------------------------------------------------------------------
  * Theme tokens
- * Dark-first by default. The `.light` class on <html> flips the tokens.
- * RGB triplets are used so Tailwind alpha modifiers (e.g. `text-accent/60`)
- * keep working against the runtime variables.
  * ------------------------------------------------------------------------- */
 
 :root {
-  --c-bg: 10 10 14;
-  --c-bg-soft: 16 16 22;
-  --c-surface: 19 19 26;
-  --c-surface-2: 26 26 34;
+  --c-bg: 8 8 12;
+  --c-bg-soft: 14 14 20;
+  --c-surface: 18 18 28;
+  --c-surface-2: 24 24 36;
   --c-border: 255 255 255;
   --c-text: 244 244 245;
   --c-muted: 163 163 172;
-  --c-faint: 124 124 134;
+  --c-faint: 110 110 120;
   --c-accent: 167 139 250;
   --c-accent-2: 129 140 248;
   --c-accent-strong: 139 92 246;
@@ -79,6 +76,18 @@ html {
   scroll-padding-top: 5.5rem;
 }
 
+html.lenis, html.lenis body {
+  height: auto;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+
 body {
   background-color: var(--color-background);
   color: var(--color-text);
@@ -101,26 +110,22 @@ body {
 }
 
 ::-webkit-scrollbar {
-  width: 10px;
-  height: 10px;
+  width: 6px;
+  height: 6px;
 }
 ::-webkit-scrollbar-track {
   background: transparent;
 }
 ::-webkit-scrollbar-thumb {
-  background: rgb(var(--c-border) / 0.18);
+  background: rgb(var(--c-border) / 0.12);
   border-radius: 999px;
-  border: 2px solid transparent;
-  background-clip: padding-box;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: rgb(var(--c-border) / 0.3);
-  background-clip: padding-box;
-  border: 2px solid transparent;
+  background: rgb(var(--c-border) / 0.25);
 }
 
 /* ---------------------------------------------------------------------------
- * Helpers
+ * Container
  * ------------------------------------------------------------------------- */
 
 .container-site {
@@ -136,10 +141,14 @@ body {
   }
 }
 
+/* ---------------------------------------------------------------------------
+ * Background patterns
+ * ------------------------------------------------------------------------- */
+
 .bg-grid {
   background-image:
-    linear-gradient(to right, rgb(var(--c-border) / 0.05) 1px, transparent 1px),
-    linear-gradient(to bottom, rgb(var(--c-border) / 0.05) 1px, transparent 1px);
+    linear-gradient(to right, rgb(var(--c-border) / 0.04) 1px, transparent 1px),
+    linear-gradient(to bottom, rgb(var(--c-border) / 0.04) 1px, transparent 1px);
   background-size: 56px 56px;
 }
 
@@ -153,45 +162,80 @@ body {
   mask-image: radial-gradient(ellipse 80% 60% at 50% 40%, black 40%, transparent 100%);
 }
 
-.card-surface {
-  background-color: rgb(var(--c-surface) / 0.6);
-  border: 1px solid rgb(var(--c-border) / 0.08);
+.mask-hero {
+  -webkit-mask-image: radial-gradient(ellipse 65% 45% at 50% 45%, black 25%, transparent 100%);
+  mask-image: radial-gradient(ellipse 65% 45% at 50% 45%, black 25%, transparent 100%);
 }
 
-/* Section-tinted card. Set --tint / --tint-2 to a soft rgba accent per section. */
+/* ---------------------------------------------------------------------------
+ * Cards
+ * ------------------------------------------------------------------------- */
+
+.card-surface {
+  background-color: rgb(var(--c-surface) / 0.55);
+  border: 1px solid rgb(var(--c-border) / 0.07);
+  backdrop-filter: blur(20px) saturate(1.2);
+  -webkit-backdrop-filter: blur(20px) saturate(1.2);
+}
+
 .card-tinted {
   position: relative;
-  background-color: rgb(var(--c-surface) / 0.6);
-  border: 1px solid rgb(var(--c-border) / 0.08);
+  background-color: rgb(var(--c-surface) / 0.5);
+  border: 1px solid rgb(var(--c-border) / 0.07);
+  backdrop-filter: blur(20px) saturate(1.2);
+  -webkit-backdrop-filter: blur(20px) saturate(1.2);
   background-image:
-    radial-gradient(120% 90% at 15% 0%, var(--tint, rgba(167, 139, 250, 0.09)) 0%, transparent 55%),
+    radial-gradient(120% 90% at 15% 0%, var(--tint, rgba(167, 139, 250, 0.08)) 0%, transparent 55%),
     radial-gradient(120% 90% at 85% 100%, var(--tint-2, transparent) 0%, transparent 55%);
 }
 
-/* Premium gradient-border card. Set --edge-a / --edge-b / --edge-glow per section. */
 .card-edge {
   position: relative;
   border: 1px solid transparent;
   background:
-    linear-gradient(rgb(var(--c-surface) / 0.78), rgb(var(--c-surface) / 0.5)) padding-box,
-    linear-gradient(140deg, var(--edge-a, rgba(139, 92, 246, 0.55)), var(--edge-b, rgba(99, 102, 241, 0.55))) border-box;
-  box-shadow: 0 0 60px -20px var(--edge-glow, rgba(139, 92, 246, 0.25));
+    linear-gradient(rgb(var(--c-surface) / 0.7), rgb(var(--c-surface) / 0.4)) padding-box,
+    linear-gradient(140deg, var(--edge-a, rgba(139, 92, 246, 0.5)), var(--edge-b, rgba(99, 102, 241, 0.5))) border-box;
+  box-shadow:
+    0 0 60px -20px var(--edge-glow, rgba(139, 92, 246, 0.25)),
+    inset 0 1px 0 0 rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(20px) saturate(1.2);
+  -webkit-backdrop-filter: blur(20px) saturate(1.2);
 }
 
 .card-hover {
-  transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease, background-color 0.3s ease;
+  transition: transform 0.5s cubic-bezier(0.21, 0.47, 0.32, 0.98), box-shadow 0.5s ease, border-color 0.5s ease;
 }
 .card-hover:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 22px 50px -22px var(--hover-glow, rgba(139, 92, 246, 0.3));
+  transform: translateY(-8px);
+  box-shadow:
+    0 30px 60px -25px var(--hover-glow, rgba(139, 92, 246, 0.3)),
+    0 0 0 1px rgba(139, 92, 246, 0.1);
 }
+
+/* ---------------------------------------------------------------------------
+ * Text effects
+ * ------------------------------------------------------------------------- */
 
 .text-gradient {
   background-image: linear-gradient(
     100deg,
     rgb(var(--c-accent-2)) 0%,
-    rgb(var(--c-accent)) 55%,
-    rgb(var(--c-accent-2)) 100%
+    rgb(var(--c-accent)) 50%,
+    rgb(var(--c-accent-cyan)) 100%
+  );
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: gradient-shift 6s ease infinite;
+}
+
+.text-gradient-sky {
+  background-image: linear-gradient(
+    100deg,
+    rgb(var(--c-accent-cyan)) 0%,
+    rgb(var(--c-accent-sky)) 50%,
+    rgb(var(--c-accent-cyan)) 100%
   );
   -webkit-background-clip: text;
   background-clip: text;
@@ -203,11 +247,191 @@ body {
   background-size: 0% 1px;
   background-position: 0 100%;
   background-repeat: no-repeat;
-  transition: background-size 0.25s ease;
+  transition: background-size 0.3s cubic-bezier(0.21, 0.47, 0.32, 0.98);
   padding-bottom: 2px;
 }
 .link-underline:hover {
   background-size: 100% 1px;
+}
+
+/* ---------------------------------------------------------------------------
+ * Animations
+ * ------------------------------------------------------------------------- */
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px) rotateX(0deg); }
+  50% { transform: translateY(-14px) rotateX(2deg); }
+}
+
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+@keyframes pulse-glow {
+  0%, 100% { box-shadow: 0 0 20px rgba(139, 92, 246, 0.15), 0 0 60px rgba(139, 92, 246, 0.05); }
+  50% { box-shadow: 0 0 40px rgba(139, 92, 246, 0.3), 0 0 80px rgba(139, 92, 246, 0.1); }
+}
+
+@keyframes gradient-shift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+@keyframes border-glow {
+  0%, 100% { border-color: rgba(139, 92, 246, 0.15); }
+  50% { border-color: rgba(139, 92, 246, 0.45); }
+}
+
+@keyframes ring-rotate {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+@keyframes spin-slow {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+@keyframes orbit {
+  from { transform: rotate(0deg) translateX(12px) rotate(0deg); }
+  to { transform: rotate(360deg) translateX(12px) rotate(-360deg); }
+}
+
+.animate-float {
+  animation: float 6s ease-in-out infinite;
+}
+
+.animate-shimmer {
+  background-size: 200% 100%;
+  animation: shimmer 3s ease-in-out infinite;
+}
+
+.animate-pulse-glow {
+  animation: pulse-glow 4s ease-in-out infinite;
+}
+
+.animate-gradient-shift {
+  background-size: 200% 200%;
+  animation: gradient-shift 4s ease infinite;
+}
+
+.animate-border-glow {
+  animation: border-glow 3s ease-in-out infinite;
+}
+
+.animate-ring-rotate {
+  animation: ring-rotate 20s linear infinite;
+}
+
+.animate-spin-slow {
+  animation: spin-slow 20s linear infinite;
+}
+
+/* ---------------------------------------------------------------------------
+ * Glassmorphism
+ * ------------------------------------------------------------------------- */
+
+.glass {
+  background: rgba(var(--c-surface) / 0.35);
+  backdrop-filter: blur(24px) saturate(1.3);
+  -webkit-backdrop-filter: blur(24px) saturate(1.3);
+  border: 1px solid rgba(var(--c-border) / 0.07);
+}
+
+.glass-strong {
+  background: rgba(var(--c-surface) / 0.55);
+  backdrop-filter: blur(30px) saturate(1.4);
+  -webkit-backdrop-filter: blur(30px) saturate(1.4);
+  border: 1px solid rgba(var(--c-border) / 0.1);
+  box-shadow: inset 0 1px 0 0 rgba(255, 255, 255, 0.03);
+}
+
+/* ---------------------------------------------------------------------------
+ * Button effects
+ * ------------------------------------------------------------------------- */
+
+.btn-glow {
+  position: relative;
+  overflow: hidden;
+}
+.btn-glow::before {
+  content: '';
+  position: absolute;
+  inset: -3px;
+  background: linear-gradient(135deg, rgba(139, 92, 246, 0.4), rgba(99, 102, 241, 0.4), rgba(6, 182, 212, 0.3));
+  border-radius: inherit;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  z-index: -1;
+  filter: blur(12px);
+}
+.btn-glow:hover::before {
+  opacity: 1;
+}
+
+/* ---------------------------------------------------------------------------
+ * Tech badge effects
+ * ------------------------------------------------------------------------- */
+
+.tech-badge-shine {
+  position: relative;
+  overflow: hidden;
+}
+.tech-badge-shine::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.06), transparent);
+  transition: left 0.6s ease;
+}
+.tech-badge-shine:hover::after {
+  left: 100%;
+}
+
+/* ---------------------------------------------------------------------------
+ * Section transitions
+ * ------------------------------------------------------------------------- */
+
+.section-depth {
+  transform-style: preserve-3d;
+  perspective: 1200px;
+}
+
+.section-glow-top {
+  position: relative;
+}
+.section-glow-top::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 10%;
+  right: 10%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(139, 92, 246, 0.15), transparent);
+}
+
+/* ---------------------------------------------------------------------------
+ * 3D Floating elements
+ * ------------------------------------------------------------------------- */
+
+.floating-element {
+  animation: float 6s ease-in-out infinite;
+  transform-style: preserve-3d;
+}
+
+.floating-element:nth-child(2) {
+  animation-delay: -2s;
+  animation-duration: 7s;
+}
+
+.floating-element:nth-child(3) {
+  animation-delay: -4s;
+  animation-duration: 8s;
 }
 
 /* ---------------------------------------------------------------------------

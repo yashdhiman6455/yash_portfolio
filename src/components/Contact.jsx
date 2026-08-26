@@ -45,9 +45,9 @@ function Field({ label, error, children, fieldId }) {
 
 const inputClass = (hasError) =>
   cn(
-    'w-full rounded-lg border bg-surface-2/50 px-4 py-2.5 text-sm text-text placeholder:text-faint transition-colors',
-    'focus:border-accent-emerald focus:outline-none focus:ring-2 focus:ring-accent-emerald/25',
-    hasError ? 'border-red-500/60' : 'border-line',
+    'w-full rounded-xl border bg-surface-2/40 px-4 py-3 text-sm text-text placeholder:text-faint transition-all duration-300 backdrop-blur-sm',
+    'focus:border-accent-emerald focus:outline-none focus:ring-2 focus:ring-accent-emerald/25 focus:bg-surface-2/60 focus:shadow-lg focus:shadow-accent-emerald/5',
+    hasError ? 'border-red-500/60' : 'border-line hover:border-line-strong/50 hover:bg-surface-2/50',
   )
 
 function ContactForm() {
@@ -87,8 +87,8 @@ function ContactForm() {
       noValidate
       className="card-tinted space-y-5 rounded-3xl p-6 md:p-8"
       style={{
-        '--tint': 'rgba(110, 231, 183, 0.08)',
-        '--tint-2': 'rgba(34, 211, 238, 0.07)',
+        '--tint': 'rgba(110, 231, 183, 0.06)',
+        '--tint-2': 'rgba(34, 211, 238, 0.05)',
       }}
     >
       <div className="grid gap-5 sm:grid-cols-2">
@@ -136,7 +136,7 @@ function ContactForm() {
       {status === 'success' && (
         <div
           role="status"
-          className="flex items-start gap-2.5 rounded-lg border border-status/30 bg-status/10 px-4 py-3 text-sm text-status"
+          className="flex items-start gap-2.5 rounded-xl border border-status/30 bg-status/10 px-4 py-3 text-sm text-status"
         >
           <CheckCircle2 size={17} className="mt-0.5 shrink-0" />
           <span>Message ready — it should open in WhatsApp. Thank you for reaching out!</span>
@@ -146,7 +146,7 @@ function ContactForm() {
       {status === 'error' && (
         <div
           role="alert"
-          className="flex items-start gap-2.5 rounded-lg border border-red-500/30 bg-red-500/10 px-4 py-3 text-sm text-red-500"
+          className="flex items-start gap-2.5 rounded-xl border border-red-500/30 bg-red-500/10 px-4 py-3 text-sm text-red-500"
         >
           <AlertCircle size={17} className="mt-0.5 shrink-0" />
           <span>Something went wrong sending your message. Please try again or email me directly.</span>
@@ -156,7 +156,7 @@ function ContactForm() {
       <button
         type="submit"
         disabled={status === 'submitting'}
-        className="group inline-flex w-full items-center justify-center gap-2 rounded-lg bg-gradient-to-r from-emerald-500 to-cyan-500 px-6 py-3 text-sm font-medium text-white shadow-lg shadow-emerald-600/20 transition-all hover:shadow-emerald-600/35 hover:brightness-110 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent-emerald active:scale-[0.99] disabled:pointer-events-none disabled:opacity-60 sm:w-auto"
+        className="group inline-flex w-full items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-emerald-500 to-cyan-500 px-6 py-3.5 text-sm font-medium text-white shadow-lg shadow-emerald-600/20 transition-all duration-300 hover:shadow-emerald-600/40 hover:brightness-110 hover:scale-[1.01] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent-emerald active:scale-[0.99] disabled:pointer-events-none disabled:opacity-60 sm:w-auto"
       >
         {status === 'submitting' ? (
           <>
@@ -166,7 +166,7 @@ function ContactForm() {
         ) : (
           <>
             Send Message
-            <ArrowUpRight size={15} className="transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+            <ArrowUpRight size={15} className="transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
           </>
         )}
       </button>
@@ -178,11 +178,11 @@ export default function Contact() {
   return (
     <section id="contact" className="relative py-24 md:py-32">
       <div
-        className="pointer-events-none absolute -left-40 bottom-40 h-96 w-96 rounded-full bg-accent-emerald/10 blur-[140px]"
+        className="pointer-events-none absolute -left-40 bottom-40 h-96 w-96 rounded-full bg-accent-emerald/8 blur-[140px]"
         aria-hidden="true"
       />
       <div
-        className="pointer-events-none absolute -right-40 top-24 h-96 w-96 rounded-full bg-accent-cyan/10 blur-[140px]"
+        className="pointer-events-none absolute -right-40 top-24 h-96 w-96 rounded-full bg-accent-cyan/8 blur-[140px]"
         aria-hidden="true"
       />
 
@@ -196,7 +196,7 @@ export default function Contact() {
         />
 
         <div className="grid gap-6 lg:grid-cols-[0.85fr_1.15fr] lg:gap-8">
-          <Reveal>
+          <Reveal rotateX={3}>
             <aside
               className="card-edge flex h-full flex-col rounded-3xl p-6 md:p-8"
               style={{
@@ -228,17 +228,17 @@ export default function Contact() {
                       href={href}
                       target={target}
                       rel={isEmail ? undefined : 'noopener noreferrer'}
-                      className={`group flex items-center gap-4 rounded-xl border p-4 transition-all duration-300 ${
+                      className={`group flex items-center gap-4 rounded-xl border p-4 transition-all duration-400 hover:scale-[1.02] ${
                         isEmail
-                          ? 'border-accent-emerald/40 bg-accent-emerald/10 hover:bg-accent-emerald/15'
-                          : 'border-line bg-background/40 hover:border-accent-emerald/40 hover:bg-background/60'
+                          ? 'border-accent-emerald/40 bg-accent-emerald/10 hover:bg-accent-emerald/15 hover:shadow-lg hover:shadow-accent-emerald/10'
+                          : 'border-line bg-background/40 hover:border-accent-emerald/40 hover:bg-background/60 hover:shadow-lg hover:shadow-accent-emerald/10'
                       }`}
                     >
                       <span
-                        className={`grid h-10 w-10 shrink-0 place-items-center rounded-lg border ${
+                        className={`grid h-10 w-10 shrink-0 place-items-center rounded-xl border transition-all duration-300 group-hover:scale-110 ${
                           isEmail
-                            ? 'border-accent-emerald/50 bg-accent-emerald/15'
-                            : 'border-accent-emerald/25 bg-accent-emerald/10'
+                            ? 'border-accent-emerald/50 bg-accent-emerald/15 group-hover:bg-accent-emerald/20'
+                            : 'border-accent-emerald/25 bg-accent-emerald/10 group-hover:border-accent-emerald/40'
                         }`}
                       >
                         {Icon('text-accent-emerald')}
@@ -251,7 +251,7 @@ export default function Contact() {
                       </span>
                       <ArrowUpRight
                         size={16}
-                        className="shrink-0 text-faint transition-all group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:text-accent-emerald"
+                        className="shrink-0 text-faint transition-all duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:text-accent-emerald"
                       />
                     </a>
                   )
@@ -259,9 +259,9 @@ export default function Contact() {
 
                 <a
                   href="tel:+918569885563"
-                  className="group flex items-center gap-4 rounded-xl border border-line bg-background/40 p-4 transition-all duration-300 hover:border-accent-emerald/40 hover:bg-background/60"
+                  className="group flex items-center gap-4 rounded-xl border border-line bg-background/40 p-4 transition-all duration-400 hover:border-accent-emerald/40 hover:bg-background/60 hover:shadow-lg hover:shadow-accent-emerald/10 hover:scale-[1.02]"
                 >
-                  <span className="grid h-10 w-10 shrink-0 place-items-center rounded-lg border border-accent-emerald/25 bg-accent-emerald/10">
+                  <span className="grid h-10 w-10 shrink-0 place-items-center rounded-xl border border-accent-emerald/25 bg-accent-emerald/10 transition-all duration-300 group-hover:border-accent-emerald/40 group-hover:scale-110">
                     <Phone size={16} className="text-accent-emerald" />
                   </span>
                   <span className="min-w-0 flex-1">
@@ -270,12 +270,12 @@ export default function Contact() {
                   </span>
                   <ArrowUpRight
                     size={16}
-                    className="shrink-0 text-faint transition-all group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:text-accent-emerald"
+                    className="shrink-0 text-faint transition-all duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:text-accent-emerald"
                   />
                 </a>
 
                 <div className="flex items-center gap-4 rounded-xl border border-line bg-background/40 p-4">
-                  <span className="grid h-10 w-10 shrink-0 place-items-center rounded-lg border border-accent-emerald/25 bg-accent-emerald/10">
+                  <span className="grid h-10 w-10 shrink-0 place-items-center rounded-xl border border-accent-emerald/25 bg-accent-emerald/10">
                     <MapPin size={16} className="text-accent-emerald" />
                   </span>
                   <span className="min-w-0 flex-1">
@@ -300,7 +300,7 @@ export default function Contact() {
             </aside>
           </Reveal>
 
-          <Reveal delay={0.1}>
+          <Reveal delay={0.1} rotateX={3}>
             <ContactForm />
           </Reveal>
         </div>

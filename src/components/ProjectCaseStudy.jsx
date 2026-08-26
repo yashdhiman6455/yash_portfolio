@@ -33,7 +33,7 @@ function Section({ title, children }) {
   return (
     <section className="mt-9 first:mt-0">
       <h3 className="flex items-center gap-2.5 font-display text-base font-semibold text-text">
-        <span className="h-4 w-1 rounded-full bg-accent" aria-hidden="true" />
+        <span className="h-4 w-1 rounded-full bg-gradient-to-b from-accent to-accent-2" aria-hidden="true" />
         {title}
       </h3>
       <div className="mt-4">{children}</div>
@@ -85,11 +85,11 @@ export default function ProjectCaseStudy({ project, onClose }) {
       {project && (
         <div className="fixed inset-0 z-[100]">
           <motion.div
-            className="absolute inset-0 bg-black/70 backdrop-blur-sm"
+            className="absolute inset-0 bg-black/75 backdrop-blur-md"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            transition={{ duration: 0.25 }}
+            transition={{ duration: 0.3 }}
             onClick={onClose}
             aria-hidden="true"
           />
@@ -101,16 +101,16 @@ export default function ProjectCaseStudy({ project, onClose }) {
             className="pointer-events-none absolute inset-0 flex items-end justify-center sm:items-center sm:p-6"
           >
             <motion.div
-              className="pointer-events-auto flex max-h-[92dvh] w-full max-w-3xl flex-col overflow-hidden rounded-t-2xl border border-line bg-background shadow-2xl shadow-black/40 sm:max-h-[85dvh] sm:rounded-2xl"
-              initial={{ opacity: 0, y: reduce ? 0 : 48, scale: reduce ? 1 : 0.98 }}
+              className="pointer-events-auto flex max-h-[92dvh] w-full max-w-3xl flex-col overflow-hidden rounded-t-2xl border border-line-strong/30 bg-background/95 shadow-2xl shadow-black/50 backdrop-blur-xl sm:max-h-[85dvh] sm:rounded-2xl"
+              initial={{ opacity: 0, y: reduce ? 0 : 48, scale: reduce ? 1 : 0.97 }}
               animate={{ opacity: 1, y: 0, scale: 1 }}
-              exit={{ opacity: 0, y: reduce ? 0 : 32, scale: reduce ? 1 : 0.98 }}
-              transition={{ duration: 0.35, ease: EASE }}
+              exit={{ opacity: 0, y: reduce ? 0 : 32, scale: reduce ? 1 : 0.97 }}
+              transition={{ duration: 0.4, ease: EASE }}
             >
-              <header className="flex items-start justify-between gap-4 border-b border-line px-6 py-5 sm:px-8">
+              <header className="flex items-start justify-between gap-4 border-b border-line-strong/30 px-6 py-5 sm:px-8">
                 <div>
                   <div className="flex flex-wrap items-center gap-2.5">
-                    <span className="inline-flex items-center rounded-full border border-accent/30 bg-accent/10 px-2.5 py-0.5 text-[11px] font-medium text-accent">
+                    <span className="inline-flex items-center rounded-full border border-accent/30 bg-accent/10 px-3 py-0.5 text-[11px] font-medium text-accent">
                       {project.status}
                     </span>
                     <span className="font-mono text-[11px] text-faint">{project.year}</span>
@@ -128,7 +128,7 @@ export default function ProjectCaseStudy({ project, onClose }) {
                   type="button"
                   onClick={onClose}
                   aria-label="Close case study"
-                  className="grid h-9 w-9 shrink-0 place-items-center rounded-lg border border-line-strong text-muted transition-colors hover:border-accent/50 hover:text-text"
+                  className="grid h-9 w-9 shrink-0 place-items-center rounded-xl border border-line-strong/50 text-muted transition-all duration-300 hover:border-accent/50 hover:text-text hover:bg-surface/50"
                 >
                   <X size={17} />
                 </button>
@@ -148,13 +148,13 @@ export default function ProjectCaseStudy({ project, onClose }) {
 
                   {project.problem && project.solution && (
                     <div className="mt-9 grid gap-4 sm:grid-cols-2">
-                      <div className="rounded-xl border border-line bg-surface/60 p-5">
+                      <div className="rounded-xl border border-line bg-surface/50 p-5 backdrop-blur-sm">
                         <h3 className="font-mono text-[11px] uppercase tracking-[0.18em] text-faint">
                           Problem
                         </h3>
                         <p className="mt-3 text-sm leading-relaxed text-muted">{project.problem}</p>
                       </div>
-                      <div className="rounded-xl border border-accent/25 bg-accent/5 p-5">
+                      <div className="rounded-xl border border-accent/25 bg-accent/5 p-5 backdrop-blur-sm">
                         <h3 className="font-mono text-[11px] uppercase tracking-[0.18em] text-accent">
                           Solution
                         </h3>
@@ -165,7 +165,7 @@ export default function ProjectCaseStudy({ project, onClose }) {
 
                   {project.flow.length > 0 && (
                     <Section title="Architecture — How It Works">
-                      <div className="relative ml-2 border-l border-line-strong pl-6">
+                      <div className="relative ml-2 border-l border-line-strong/50 pl-6">
                         {project.flow.map((step, i) => {
                           const Icon = flowIcons[step.label]
                           return (
@@ -221,7 +221,7 @@ export default function ProjectCaseStudy({ project, onClose }) {
                         {project.highlights.map((highlight) => (
                           <div
                             key={highlight}
-                            className="flex items-center gap-2.5 rounded-lg border border-line bg-surface/60 px-3.5 py-2.5 text-[13px] text-muted"
+                            className="flex items-center gap-2.5 rounded-lg border border-line bg-surface/50 px-3.5 py-2.5 text-[13px] text-muted backdrop-blur-sm"
                           >
                             <span className="h-1.5 w-1.5 shrink-0 rounded-full bg-accent" aria-hidden="true" />
                             {highlight}
@@ -249,7 +249,7 @@ export default function ProjectCaseStudy({ project, onClose }) {
                       {project.tech.map((tech) => (
                         <span
                           key={tech}
-                          className="rounded-md border border-line bg-surface-2/60 px-2.5 py-1 font-mono text-[11px] text-muted"
+                          className="rounded-lg border border-line bg-surface-2/50 px-3 py-1 font-mono text-[11px] text-muted tech-badge-shine"
                         >
                           {tech}
                         </span>
@@ -268,7 +268,7 @@ export default function ProjectCaseStudy({ project, onClose }) {
                 </motion.div>
               </div>
 
-              <footer className="flex flex-wrap items-center gap-3 border-t border-line px-6 py-5 sm:px-8">
+              <footer className="flex flex-wrap items-center gap-3 border-t border-line-strong/30 px-6 py-5 sm:px-8">
                 {project.links.demo && (
                   <Button href={project.links.demo} size="sm">
                     Live Demo

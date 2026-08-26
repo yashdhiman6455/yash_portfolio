@@ -1,4 +1,5 @@
 import { useCallback, useState } from 'react'
+import useSmoothScroll from './hooks/useSmoothScroll'
 import Navbar from './components/Navbar'
 import Hero from './components/Hero'
 import About from './components/About'
@@ -11,8 +12,12 @@ import Contact from './components/Contact'
 import Footer from './components/Footer'
 import ProjectCaseStudy from './components/ProjectCaseStudy'
 import DemoCredentialsModal from './components/DemoCredentialsModal'
+import CustomCursor from './components/shared/CustomCursor'
+import NoiseOverlay from './components/NoiseOverlay'
 
 export default function App() {
+  useSmoothScroll()
+
   const [activeProject, setActiveProject] = useState(null)
   const [credentialsProject, setCredentialsProject] = useState(null)
 
@@ -23,9 +28,12 @@ export default function App() {
 
   return (
     <div className="relative min-h-screen bg-background text-text">
+      <CustomCursor />
+      <NoiseOverlay />
+
       <a
         href="#home"
-        className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[200] focus:rounded-lg focus:bg-surface focus:px-4 focus:py-2 focus:text-sm focus:text-text focus:ring-2 focus:ring-accent"
+        className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[200] focus:rounded-xl focus:bg-surface focus:px-4 focus:py-2 focus:text-sm focus:text-text focus:ring-2 focus:ring-accent"
       >
         Skip to content
       </a>
