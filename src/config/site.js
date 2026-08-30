@@ -248,9 +248,9 @@ export const projects = [
     featured: true,
     preview: 'storefront',
     screenshots: [
-      '/images/shopsphere-1.png',
-      '/images/shopsphere-2.png',
-      '/images/shopsphere-3.png',
+      '/images/shopsphere-1.webp',
+      '/images/shopsphere-2.webp',
+      '/images/shopsphere-3.webp',
     ],
     description:
       'A full-stack e-commerce storefront with a Laravel backend serving a Vue.js single-page application — products, categories, cart and checkout, built with MySQL, Vite, HTML, CSS and JavaScript.',
@@ -306,10 +306,10 @@ export const projects = [
     featured: true,
     preview: 'form-builder',
     screenshots: [
-      '/images/formgenius-1.png',
-      '/images/formgenius-2.png',
-      '/images/formgenius-3.png',
-      '/images/formgenius-4.png',
+      '/images/formgenius-1.webp',
+      '/images/formgenius-2.webp',
+      '/images/formgenius-3.webp',
+      '/images/formgenius-4.webp',
     ],
     description:
       'FormGenius AI lets users describe a form in plain language and get a fully structured, publishable form back — powered by an AI API and rendered dynamically from a generated JSON schema.',
@@ -376,10 +376,10 @@ export const projects = [
     featured: true,
     preview: 'rental',
     screenshots: [
-      '/images/staynest_home.png',
-      '/images/StayNest_Explore.png',
-      '/images/StayNest_Login.png',
-      '/images/StayNest_My_Properties.png',
+      '/images/staynest_home.webp',
+      '/images/StayNest_Explore.webp',
+      '/images/StayNest_Login.webp',
+      '/images/StayNest_My_Properties.webp',
     ],
     description:
       'A full-stack property rental and booking platform with a Laravel 11 REST API backend and a Vue.js 3 single-page application frontend — property listings, search, booking and management, powered by MySQL, Pinia, Sanctum and Vite.',

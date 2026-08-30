@@ -49,10 +49,11 @@ export default function Hero() {
                 </svg>
               </div>
               <img
-                src="/images/profile.png"
+                src="/images/profile.webp"
                 alt={site.name}
                 width={144}
                 height={144}
+                fetchpriority="high"
                 className="relative h-36 w-36 rounded-full border-2 border-white/10 object-cover ring-2 ring-accent/30 shadow-2xl shadow-accent/20"
               />
             </div>

@@ -86,10 +86,11 @@ export default function About() {
                   <div className="absolute -inset-3 rounded-full bg-gradient-to-br from-accent-sky/40 via-accent-2/25 to-accent-strong/35 opacity-50 blur-xl" aria-hidden="true" />
                   <div className="absolute -inset-1.5 rounded-full border border-accent-sky/20 animate-ring-rotate" style={{ animationDuration: '15s' }} aria-hidden="true" />
                   <img
-                    src="/images/profile.png"
+                    src="/images/profile.webp"
                     alt={site.name}
                     width={80}
                     height={80}
+                    loading="lazy"
                     className="relative h-20 w-20 rounded-full border-2 border-white/10 object-cover ring-2 ring-accent-sky/30 shadow-xl shadow-accent-sky/10"
                   />
                   {site.available && (

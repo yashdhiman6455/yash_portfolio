@@ -263,24 +263,41 @@ function Scene() {
 
 export default function HeroScene({ className = '' }) {
   const [supportsWebGL, setSupportsWebGL] = useState(true)
+  const wrapRef = useRef(null)
+  const [active, setActive] = useState(true)
 
   useEffect(() => {
     try {
       const canvas = document.createElement('canvas')
       const gl = canvas.getContext('webgl2') || canvas.getContext('webgl')
-      if (!gl) setSupportsWebGL(false)
+      if (!gl) {
+        setSupportsWebGL(false)
+        return
+      }
     } catch {
       setSupportsWebGL(false)
+      return
     }
+
+    if (!('IntersectionObserver' in window)) return
+
+    const observer = new IntersectionObserver(
+      ([entry]) => setActive(entry.isIntersecting),
+      { threshold: 0.05 },
+    )
+    if (wrapRef.current) observer.observe(wrapRef.current)
+
+    return () => observer.disconnect()
   }, [])
 
   if (!supportsWebGL) return null
 
   return (
-    <div className={`absolute inset-0 ${className}`} aria-hidden="true">
+    <div ref={wrapRef} className={`absolute inset-0 ${className}`} aria-hidden="true">
       <Canvas
         camera={{ position: [0, 1.5, 6], fov: 55 }}
         dpr={[1, 1.5]}
+        frameloop={active ? 'always' : 'never'}
         gl={{ antialias: true, alpha: true, powerPreference: 'high-performance' }}
         style={{ background: 'transparent' }}
       >

@@ -1,4 +1,4 @@
-import { useCallback, useState } from 'react'
+import { useCallback, useState, lazy, Suspense } from 'react'
 import useSmoothScroll from './hooks/useSmoothScroll'
 import Navbar from './components/Navbar'
 import Hero from './components/Hero'
@@ -10,10 +10,11 @@ import Architecture from './components/Architecture'
 import ResumeCTA from './components/ResumeCTA'
 import Contact from './components/Contact'
 import Footer from './components/Footer'
-import ProjectCaseStudy from './components/ProjectCaseStudy'
-import DemoCredentialsModal from './components/DemoCredentialsModal'
 import CustomCursor from './components/shared/CustomCursor'
 import NoiseOverlay from './components/NoiseOverlay'
+
+const ProjectCaseStudy = lazy(() => import('./components/ProjectCaseStudy'))
+const DemoCredentialsModal = lazy(() => import('./components/DemoCredentialsModal'))
 
 export default function App() {
   useSmoothScroll()
@@ -53,8 +54,10 @@ export default function App() {
 
       <Footer />
 
-      <ProjectCaseStudy project={activeProject} onClose={closeCaseStudy} />
-      <DemoCredentialsModal project={credentialsProject} onClose={closeCredentials} />
+      <Suspense fallback={null}>
+        <ProjectCaseStudy project={activeProject} onClose={closeCaseStudy} />
+        <DemoCredentialsModal project={credentialsProject} onClose={closeCredentials} />
+      </Suspense>
     </div>
   )
 }
