@@ -15,7 +15,7 @@ export const site = {
   email: 'dyash6455@gmail.com',
   phone: '+91 85698 85563',
   whatsappUrl: 'https://wa.me/918569885563',
-  resumeUrl: '/resume/Resume_Yash.pdf',
+  resumeUrl: '/resume/ResumeYashDhiman.pdf',
   resumeDownloadName: 'Yash-Dhiman-Resume.pdf',
   githubUrl: 'https://github.com/yashdhiman6455',
   linkedinUrl: 'https://www.linkedin.com/in/yash-dhiman003/',
@@ -111,7 +111,7 @@ export const experience = [
   {
     role: 'Web Developer',
     company: 'Net Set Software Solutions',
-    period: 'June 2023 – Dec 2025',
+    period: 'June 2023 – Nov 2024',
     current: false,
     description:
       'Developed dynamic, database-driven websites and web applications across PHP and modern frontend tooling.',
