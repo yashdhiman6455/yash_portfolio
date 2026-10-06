@@ -34,7 +34,7 @@ Replace the placeholder values there once and every link across the site updates
 Also replace the placeholder resume with your own PDF at:
 
 ```
-public/resume/Yash-Resume.pdf
+public/resume/ResumeYashDhimanUpdtd.pdf
 ```
 
 Every "Download Resume" link uses the `download="Yash-Dhiman-Resume.pdf"` filename (set `resumeDownloadName` in `src/config/site.js`), and the "View Resume" link opens it in a new tab.
